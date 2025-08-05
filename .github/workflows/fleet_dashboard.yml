@@ -33,7 +33,7 @@ jobs:
 
       # 5️⃣ Run your Python script (headless Playwright)
       - name: Run Fleet Dashboard Script
-        run: python fleet_dashboard.py
+        run: python Automation_Github_V1.py
 
       # 6️⃣ Upload the output Excel as a workflow artifact
       - name: Upload Output Excel
