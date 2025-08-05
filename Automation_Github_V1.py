@@ -45,7 +45,7 @@ def main():
 
             # Wait until spinner disappears
             print("⏳ Waiting for AVLS data to load...")
-            page.locator("#nb-global-spinner").wait_for(state="hidden", timeout=120000)
+            page.wait_for_timeout(100000)
             print("✅ AVLS section loaded")
 
             # Step 3: Export Excel and save
@@ -71,4 +71,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
