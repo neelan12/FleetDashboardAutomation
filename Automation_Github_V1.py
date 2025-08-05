@@ -21,8 +21,7 @@ def main():
         browser = p.chromium.launch(headless=True)  # headless for cloud
         context = browser.new_context(accept_downloads=True)
         page = context.new_page()
-        page.set_default_timeout(60000)  # 60 seconds timeout for slow cloud
-
+        
         try:
             # Step 1: Login
             print("🔐 Logging in...")
@@ -71,5 +70,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
