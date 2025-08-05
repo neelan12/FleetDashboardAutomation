@@ -3,42 +3,54 @@ name: Fleet Dashboard Automation
 on:
   schedule:
     - cron: '0 12 * * *'   # Runs daily at 5:30 PM IST (12:00 UTC)
-  workflow_dispatch:       # Allow manual run from GitHub Actions tab
+  workflow_dispatch:       # Allow manual run
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout repository code
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Set up Python 3.11
+      # 2️⃣ Set up Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      # 3️⃣ Install required Python packages
+      # 3️⃣ Install dependencies
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install playwright pandas openpyxl
           playwright install chromium
 
-      # 4️⃣ Ensure output folder exists (extra safety)
+      # 4️⃣ Ensure output folder exists
       - name: Create output folder
         run: mkdir -p Fleet_Dashboard_Files
 
-      # 5️⃣ Run your Python script (headless Playwright)
+      # 5️⃣ Run your Python script (headless)
       - name: Run Fleet Dashboard Script
         run: python Automation_Github_V1.py
+        env:
+          LOGIN_PASSWORD: ${{ secrets.LOGIN_PASSWORD }}
 
-      # 6️⃣ Upload the output Excel as a workflow artifact
+      # 6️⃣ Upload the artifact
       - name: Upload Output Excel
         uses: actions/upload-artifact@v4
         with:
           name: Fleet-Dashboard-Output
           path: Fleet_Dashboard_Files/
-          if-no-files-found: warn  # Warn if script didn't generate any files
+          if-no-files-found: warn
+
+      # 7️⃣ Commit and push the file into the repo
+      - name: Commit output file to repo
+        run: |
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "GitHub Actions"
+          git pull --rebase
+          git add Fleet_Dashboard_Files/*
+          git commit -m "Add new fleet dashboard file for $(date +'%d-%m-%Y')" || echo "No changes to commit"
+          git push
