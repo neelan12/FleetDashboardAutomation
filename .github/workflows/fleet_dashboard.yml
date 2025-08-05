@@ -1,0 +1,34 @@
+name: Fleet Dashboard Automation
+
+on:
+  schedule:
+    - cron: '0 12 * * *'   # Runs daily at 5:30 PM IST (12:00 UTC)
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright openpyxl pandas
+          playwright install chromium
+
+      - name: Run Fleet Dashboard Script
+        run: Automation_Github_V1.py
+
+      - name: Upload Output Excel
+        uses: actions/upload-artifact@v3
+        with:
+          name: Fleet-Dashboard-Output
+          path: Fleet_Dashboard_Files/
