@@ -21,7 +21,8 @@ def main():
         browser = p.chromium.launch(headless=True)  # headless for cloud
         context = browser.new_context(accept_downloads=True)
         page = context.new_page()
-        
+        page.set_default_timeout(60000)  # 60 seconds timeout for slow cloud
+
         try:
             # Step 1: Login
             print("🔐 Logging in...")
@@ -44,7 +45,7 @@ def main():
 
             # Wait until spinner disappears
             print("⏳ Waiting for AVLS data to load...")
-            page.wait_for_timeout(100000)
+            page.locator("#nb-global-spinner").wait_for(state="hidden", timeout=60000)
             print("✅ AVLS section loaded")
 
             # Step 3: Export Excel and save
@@ -70,6 +71,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
