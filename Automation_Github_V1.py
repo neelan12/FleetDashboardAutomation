@@ -6,20 +6,22 @@ import os
 today_str = datetime.now().strftime("%d-%m-%Y")
 new_filename = f"Fleet Dashboard {today_str}.xlsx"
 
-# Use environment variable for destination or default path for GitHub Actions
-destination_folder = os.environ.get('DOWNLOAD_PATH', './downloads')
+# Output folder (GitHub Actions default = Fleet_Dashboard_Files)
+destination_folder = os.environ.get('DOWNLOAD_PATH', 'Fleet_Dashboard_Files')
 final_path = os.path.join(destination_folder, new_filename)
 
 # Delete file if it exists
+os.makedirs(destination_folder, exist_ok=True)
 if os.path.exists(final_path):
     os.remove(final_path)
     print(f"🗑️ Existing file deleted: {final_path}")
 
 def main():
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)  # Changed to headless for GitHub Actions
+        browser = p.chromium.launch(headless=True)  # headless for cloud
         context = browser.new_context(accept_downloads=True)
         page = context.new_page()
+        page.set_default_timeout(60000)  # 60 seconds timeout for slow cloud
 
         try:
             # Step 1: Login
@@ -40,17 +42,21 @@ def main():
             # Step 2: Go to AVLS section
             print("📊 Navigating to AVLS section...")
             page.click("p:has-text('AVLS')")
-            page.wait_for_timeout(15000)
+
+            # Wait until spinner disappears
+            print("⏳ Waiting for AVLS data to load...")
+            page.locator("#nb-global-spinner").wait_for(state="hidden", timeout=60000)
             print("✅ AVLS section loaded")
 
             # Step 3: Export Excel and save
             print("📥 Downloading Excel file...")
-            with page.expect_download() as download_info:
-                page.get_by_role("button", name="Export Excel All Data").click()
-            download = download_info.value
+            export_button = page.get_by_role("button", name="Export Excel All Data")
+            export_button.scroll_into_view_if_needed()
             
-            # Create destination folder if it doesn't exist
-            os.makedirs(destination_folder, exist_ok=True)
+            with page.expect_download() as download_info:
+                export_button.click()
+            
+            download = download_info.value
             download.save_as(final_path)
             print(f"✅ File downloaded: {final_path}")
 
