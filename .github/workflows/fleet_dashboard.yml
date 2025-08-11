@@ -1,35 +1,7 @@
-# .github/workflows/your-action.yml
-name: Your Triggered Action
 on:
-  workflow_dispatch:  # Can be triggered via API
+  workflow_dispatch:
     inputs:
-      message:
-        description: 'Custom message'
+      reason:
+        description: "Reason for trigger"
         required: false
-        default: 'Triggered from n8n'
-      environment:
-        description: 'Environment to run against'
-        required: false
-        default: 'production'
-        type: choice
-        options:
-          - production
-          - staging
-          - development
-
-jobs:
-  your-job:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      
-      - name: Print trigger info
-        run: |
-          echo "Triggered by: ${{ github.event_name }}"
-          echo "Message: ${{ github.event.inputs.message }}"
-          echo "Environment: ${{ github.event.inputs.environment }}"
-      
-      - name: Your existing steps...
-        run: |
-          # Your existing action code here
-          echo "Running your scheduled task..."
+        default: "Triggered from n8n cloud"
