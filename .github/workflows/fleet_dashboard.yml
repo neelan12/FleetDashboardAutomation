@@ -1,16 +1,30 @@
-name: Deploy Workflow
+name: Run Python Script
 
 on:
-  workflow_dispatch:
-    inputs:
-      reason:
-        description: "Reason for trigger"
-        required: false
-        default: "Triggered from n8n cloud"
+  workflow_dispatch: # Manual trigger from GitHub Actions tab
+  push:              # Runs on every push to main branch
+    branches:
+      - main
+  schedule:          # Optional: runs every day at 5:30 PM IST (12:00 UTC)
+    - cron: '30 12 * * *'
 
 jobs:
-  build:
+  run-python:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Print reason
-        run: echo "Reason: ${{ github.event.inputs.reason }}"
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Run Python script
+        run: python Automation_Github_V1.py
