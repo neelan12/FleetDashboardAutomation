@@ -27,10 +27,10 @@ def main():
             # Step 1: Login
             print("🔐 Logging in...")
             page.goto("https://mtcbusits.in/")
-            page.fill("input[name='UserName']", "gobi.ibi")
+            page.fill("input[name='UserName']", "arvind.ibi")
             
             # Use environment variable for password for security
-            password = os.environ.get('LOGIN_PASSWORD', 'Gobi@123')
+            password = os.environ.get('LOGIN_PASSWORD', 'Arvind@123')
             page.fill("input[id='password']", password)
             
             captcha_text = page.inner_text("span.input-group-addon").strip()
