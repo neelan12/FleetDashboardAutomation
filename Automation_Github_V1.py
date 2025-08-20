@@ -48,6 +48,12 @@ def main():
             page.locator("#nb-global-spinner").wait_for(state="hidden", timeout=60000)
             print("✅ AVLS section loaded")
 
+            # Step 3: Search for Daily Packet Count Summary Report
+            search_box = page.locator("input[placeholder='Search']")
+            search_box.fill("Fleet Dashboard")
+            search_box.press("Enter")
+            page.wait_for_timeout(15000)
+
             # Step 3: Export Excel and save
             print("📥 Downloading Excel file...")
             export_button = page.get_by_role("button", name="Export Excel All Data")
@@ -71,3 +77,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
