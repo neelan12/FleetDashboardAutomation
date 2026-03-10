@@ -3,7 +3,7 @@ name: Fleet Dashboard Automation
 
 on:
   schedule:
-    - cron: '0 12 * * *'   # Runs daily at 5:30 PM IST (12:00 UTC)
+    - cron: '0 16 * * *'   # Runs daily at 9:30 PM IST (12:00 UTC)
   workflow_dispatch:       # Allow manual run from GitHub Actions tab
 
 jobs:
