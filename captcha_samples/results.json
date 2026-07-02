@@ -1,0 +1,201 @@
+{
+  "images": [
+    {
+      "n": 1,
+      "bytes": 4677,
+      "boxes": [
+        {
+          "text": "S",
+          "conf": 0.969
+        },
+        {
+          "text": "I",
+          "conf": 0.986
+        },
+        {
+          "text": "8",
+          "conf": 1.0
+        },
+        {
+          "text": "h",
+          "conf": 0.602
+        },
+        {
+          "text": "s D",
+          "conf": 0.957
+        }
+      ],
+      "joined": "SI8hsD"
+    },
+    {
+      "n": 2,
+      "bytes": 6062,
+      "boxes": [
+        {
+          "text": "3",
+          "conf": 1.0
+        },
+        {
+          "text": "3 3",
+          "conf": 1.0
+        },
+        {
+          "text": "3",
+          "conf": 0.496
+        },
+        {
+          "text": "N 3",
+          "conf": 0.7
+        }
+      ],
+      "joined": "3333N3"
+    },
+    {
+      "n": 3,
+      "bytes": 5386,
+      "boxes": [
+        {
+          "text": "0",
+          "conf": 1.0
+        },
+        {
+          "text": "G",
+          "conf": 0.999
+        },
+        {
+          "text": "e 0",
+          "conf": 0.988
+        },
+        {
+          "text": "G a",
+          "conf": 0.973
+        }
+      ],
+      "joined": "0Ge0Ga"
+    },
+    {
+      "n": 4,
+      "bytes": 5678,
+      "boxes": [
+        {
+          "text": "4 4 999",
+          "conf": 0.602
+        },
+        {
+          "text": "3",
+          "conf": 0.64
+        }
+      ],
+      "joined": "449993"
+    },
+    {
+      "n": 5,
+      "bytes": 3569,
+      "boxes": [
+        {
+          "text": "t",
+          "conf": 0.998
+        },
+        {
+          "text": "Dtt",
+          "conf": 0.999
+        },
+        {
+          "text": "t M",
+          "conf": 0.967
+        }
+      ],
+      "joined": "tDtttM"
+    },
+    {
+      "n": 6,
+      "bytes": 5098,
+      "boxes": [
+        {
+          "text": "v a6",
+          "conf": 0.501
+        },
+        {
+          "text": "la 6 f",
+          "conf": 0.324
+        }
+      ],
+      "joined": "va6la6f"
+    },
+    {
+      "n": 7,
+      "bytes": 6032,
+      "boxes": [
+        {
+          "text": "noxX",
+          "conf": 0.754
+        },
+        {
+          "text": "04",
+          "conf": 0.397
+        }
+      ],
+      "joined": "noxX04"
+    },
+    {
+      "n": 8,
+      "bytes": 5507,
+      "boxes": [
+        {
+          "text": "U8c 0 h 8",
+          "conf": 0.692
+        }
+      ],
+      "joined": "U8c0h8"
+    }
+  ],
+  "attempts": [
+    {
+      "guess": "f11VVG",
+      "url_after": "https://mtcbusits.in/"
+    }
+  ],
+  "imgs_info": [
+    {
+      "src_prefix": "assets/images/new/Landscape.jpeg",
+      "w": 16000,
+      "h": 9000,
+      "cls": "",
+      "id": "",
+      "alt": "bg-image"
+    },
+    {
+      "src_prefix": "assets/images/new/mtclogo.png",
+      "w": 1474,
+      "h": 306,
+      "cls": "",
+      "id": "",
+      "alt": "bg-image"
+    },
+    {
+      "src_prefix": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPoA",
+      "w": 250,
+      "h": 80,
+      "cls": "",
+      "id": "",
+      "alt": ""
+    },
+    {
+      "src_prefix": "assets/images/product/amnex_logo.png",
+      "w": 300,
+      "h": 49,
+      "cls": "",
+      "id": "",
+      "alt": ""
+    },
+    {
+      "src_prefix": "./assets/images/mtclogo_icon.png",
+      "w": 363,
+      "h": 278,
+      "cls": "",
+      "id": "",
+      "alt": ""
+    }
+  ],
+  "span_input_group_addon": []
+}
